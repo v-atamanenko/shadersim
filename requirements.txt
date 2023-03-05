@@ -1,0 +1,4 @@
+strsimpy
+colorama
+termcolor
+tqdm

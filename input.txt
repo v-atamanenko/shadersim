@@ -1,0 +1,197 @@
+ 5: mov.f32         o8.xy, pa16.xy                       
+ 6: lda32.fetch4    r24, [sa116, 0x24]                   
+ 7: pack.s16.f32    pa0.xy, pa0.xy                       
+ 8: and.u32         pa15.x, pa0.x, 0xffff                
+ 9: mov.u16         pa1.x, pa0.y                         
+ 10:    and.u32         pa16.x, pa1.x, 0xffff                
+ 11:    pack.s16.f32    pa2.xy, pa2.xy                       
+ 12:    and.u32         pa17.x, pa2.x, 0xffff                
+ 13:    mad.i32.s0      i0.x, pa15.x, 0x3, 0x0               
+ 14:    mad.i32.s1      pa0.x, pa15.x, 0x3, i0.x             
+ 15:    mad.i32         pa0.x, pa0.lo16, 0x10.lo16, sa116.x  
+ 16:    lda32.fetch12   r28, [pa0, 0x28]                     
+ 17:    mad.i32.s0      i0.x, pa16.x, 0x3, 0x0               
+ 18:    mad.i32.s1      pa1.x, pa16.x, 0x3, i0.x             
+ 19:    mad.i32         pa1.x, pa1.lo16, 0x10.lo16, sa116.x  
+ 20:    lda32.fetch12   r12, [pa1, 0x28]                     
+ 21:    mad.i32.s0      i0.x, pa17.x, 0x3, 0x0               
+ 22:    mad.i32.s1      pa2.x, pa17.x, 0x3, i0.x             
+ 23:    mad.i32         pa2.x, pa2.lo16, 0x10.lo16, sa116.x  
+ 24:    lda32.fetch12   r0, [pa2, 0x28]                      
+ 25:    mov.f32         i0.xyz, pa4.xyz                      
+ 26:    mul.f32         i1.xyzw, r28.xyzw, i0.xxxx           
+ 27:    mad.f32         i1.xyzw, r12.xyzw, i0.yyyy, i1.xyzw  
+ 28:    mad.f32         pa4.xy, r0.xy, i0.zz, i1.xy          
+ 29:    mad.f32         pa6.xy, r2.xy, i0.zz, i1.zw          
+ 30:    mul.f32         i2.xyzw, r32.xyzw, i0.xxxx           
+ 31:    mad.f32         i2.xyzw, r16.xyzw, i0.yyyy, i2.xyzw  
+ 32:    mad.f32         pa0.xy, r4.xy, i0.zz, i2.xy          
+ 33:    mad.f32         pa2.xy, r6.xy, i0.zz, i2.zw          
+ 34:    mul.f32         i2.xyzw, r36.xyzw, i0.xxxx           
+ 35:    mad.f32         i2.xyzw, r20.xyzw, i0.yyyy, i2.xyzw  
+ 36:    mad.f32         i0.xyzw, r8.xyzw, i0.zzzz, i2.xyzw   
+ 37:    mul.f32         i2.xyzw, pa4.xyzw, pa8.xxxx          
+ 38:    mov.f32         i1.xyzw, pa0.xyzw                    
+ 39:    mad.f32         i2.xyzw, pa8.yyyy, i1.xyzw, i2.xyzw  
+ 40:    mad.f32         i2.xyzw, pa10.xxxx, i0.xyzw, i2.xyzw 
+ 41:    add.f32         i2.xyzw, sa116.yyyz, i2.xyzw         
+ 42:    mov.f32         i1.xyz, pa4.xyz                      
+ 43:    dot.f32         r6.x, pa12.xyz, i1.xyz               
+ 44:    mov.f32         i1.xyz, pa0.xyz                      
+ 45:    dot.f32         r6.-y, pa12.xyz, i1.xyz              
+ 46:    mov.f32         i1.xy, r6.xy                         
+ 47:    dot.f32         i1.--z, pa12.xyz, i0.xyz             
+ 48:    dot.f32         pa12.x, sa32.xyz, i1.xyz             
+ 49:    dot.f32         pa12.-y, sa36.xyz, i1.xyz            
+ 50:    dot.f32         pa12.--z, sa40.xyz, i1.xyz           
+ 51:    mov.f32         r8.x, i1.z                           
+ 52:    dot.f32         pa16.x, sa16.xyzw, i2.xyzw           
+ 53:    dot.f32         pa16.-y, sa20.xyzw, i2.xyzw          
+ 54:    dot.f32         pa16.--z, sa24.xyzw, i2.xyzw         
+ 55:    mov.f32         r0.xy, i2.xy                         
+ 56:    mov.f32         r2.xy, i2.zw                         
+ 57:    lda32.fetch3    pa0, [sa116, 0x14]                   
+ 58:    add.f32         pa4.xy, -pa16.xy, pa0.xy             
+ 59:    add.f32         pa6.x, -pa18.x, pa2.x                
+ 60:    lda32.fetch3    pa0, [sa116, 0x0]                    
+ 61:    add.f32         pa8.xy, -pa16.xy, pa0.xy             
+ 62:    add.f32         pa10.x, -pa18.x, pa2.x               
+ 63:    mov.f32         i0.xyz, pa4.xyz                      
+ 64:    dot.f32         i1.x, i0.xyz, i0.xyz                 
+ 65:    rsq.f32         i1.x, i1.x                           
+ 66:    mad.f32         i0.xyz, i0.xyz, i1.xxx, {0, 0, 0}    
+ 67:    dot.f32         r4.x, pa12.xyz, i0.xyz               
+ 68:    lda32.fetch3    pa0, [sa116, 0x20]                   
+ 69:    cmov.ltzero.f32 i1.x, r4.x, {0}, sa120.x             
+ 70:    mov.f32         i0.xyz, pa12.xyz                     
+ 71:    dot.f32         i2.x, pa0.xyz, i0.xyz                
+ 72:    max.f32         i2.x, i2.x, {0}                      
+ 73:    mul.f32         pa3.x, i1.x, i2.x                    
+ 73:    +mov.f32        i1.xyz, pa8.xyz                      
+ 74:    dot.f32         i2.x, i1.xyz, i1.xyz                 
+ 75:    rsq.f32         i2.x, i2.x                           
+ 76:    mad.f32         i1.xyz, i1.xyz, i2.xxx, {0, 0, 0}    
+ 77:    dot.f32         r4.-y, i0.xyz, i1.xyz                
+ 78:    lda32.fetch3    pa0, [sa116, 0xc]                    
+ 79:    mov.f32         i0.x, r4.y                           
+ 80:    cmov.ltzero.f32 i1.x, i0.x, {0}, sa122.x             
+ 81:    mov.f32         i0.xyz, pa12.xyz                     
+ 82:    dot.f32         i2.x, pa0.xyz, i0.xyz                
+ 83:    max.f32         i2.x, i2.x, {0}                      
+ 84:    mul.f32         i2.x, i1.x, i2.x                     
+ 84:    +mov.f32        i1.xyz, sa96.xyz                     
+ 85:    mul.f32         o4.xy, pa2.1y, {1, 1}                
+ 86:    mul.f32         o6.x, pa2.y, pa2.y                   
+ 87:    mul.f32         pa4.xy, i2.1x, {1, 1}                
+ 88:    mul.f32         pa6.x, i2.x, i2.x                    
+ 89:    mad.f32         i1.xyz, -pa16.xyz, {1, 1, 1}, i1.xyz 
+ 90:    dot.f32         i2.x, i1.xyz, i1.xyz                 
+ 91:    rsq.f32         i2.x, i2.x                           
+ 91:    +dot.f32        pa0.x, sa108.xyz, i0.xyz             
+ 92:    mad.f32         i1.xyz, i1.xyz, i2.xxx, {0, 0, 0}    
+ 93:    dot.f32         pa12.x, i0.xyz, i1.xyz               
+ 94:    cmov.ltzero.f32 i1.x, pa12.x, {0}, sa122.x           
+ 95:    max.f32         i2.x, pa0.x, {0}                     
+ 96:    mul.f32         i2.x, i1.x, i2.x                     
+ 96:    +mov.f32        i1.xyz, sa76.xyz                     
+ 97:    mul.f32         o10.xy, i2.1x, {1, 1}                
+ 98:    mul.f32         o12.x, i2.x, i2.x                    
+ 99:    mad.f32         i1.xyz, -pa16.xyz, {1, 1, 1}, i1.xyz 
+ 100:   dot.f32         i2.x, i1.xyz, i1.xyz                 
+ 101:   rsq.f32         i2.x, i2.x                           
+ 101:   +dot.f32        pa0.x, sa88.xyz, i0.xyz              
+ 102:   mad.f32         i1.xyz, i1.xyz, i2.xxx, {0, 0, 0}    
+ 103:   dot.f32         pa10.x, i0.xyz, i1.xyz               
+ 104:   cmov.ltzero.f32 i0.x, pa10.x, {0}, sa122.x           
+ 105:   max.f32         i1.x, pa0.x, {0}                     
+ 106:   mul.f32         i0.x, i0.x, i1.x                     
+ 106:   +mov.f32        i1.xyzw, sa20.xyzw                   
+ 107:   mul.f32         pa14.xy, i0.1x, {1, 1}               
+ 108:   mul.f32         pa16.x, i0.x, i0.x                   
+ 109:   mul.f32         i0.xyzw, sa16.xyzw, sa4.xxxx         
+ 110:   mad.f32         i0.xyzw, sa4.yyyy, i1.xyzw, i0.xyzw  
+ 111:   mov.f32         i2.xyzw, sa24.xyzw                   
+ 112:   mad.f32         i0.xyzw, sa6.xxxx, i2.xyzw, i0.xyzw  
+ 113:   mov.f32         i2.xyzw, sa28.xyzw                   
+ 114:   mad.f32         i0.xyzw, sa6.yyyy, i2.xyzw, i0.xyzw  
+ 115:   mul.f32         i2.xyzw, sa16.xyzw, sa0.xxxx         
+ 116:   mad.f32         i2.xyzw, sa0.yyyy, i1.xyzw, i2.xyzw  
+ 117:   mov.f32         i1.xyzw, sa24.xyzw                   
+ 118:   mad.f32         i2.xyzw, sa2.xxxx, i1.xyzw, i2.xyzw  
+ 119:   mov.f32         i1.xyzw, sa28.xyzw                   
+ 120:   mad.f32         i2.xyzw, sa2.yyyy, i1.xyzw, i2.xyzw  
+ 121:   dot.f32         o0.x, r0.xyzw, i2.xyzw               
+ 122:   dot.f32         o0.-y, r0.xyzw, i0.xyzw              
+ 123:   mul.f32         i0.xyzw, sa16.xyzw, sa8.xxxx         
+ 124:   mov.f32         i2.xyzw, sa20.xyzw                   
+ 125:   mad.f32         i0.xyzw, sa8.yyyy, i2.xyzw, i0.xyzw  
+ 126:   mov.f32         i2.xyzw, sa24.xyzw                   
+ 127:   mad.f32         i0.xyzw, sa10.xxxx, i2.xyzw, i0.xyzw 
+ 128:   mad.f32         i0.xyzw, sa10.yyyy, i1.xyzw, i0.xyzw 
+ 129:   dot.f32         o2.x, r0.xyzw, i0.xyzw               
+ 130:   mul.f32         i0.xyzw, sa16.xyzw, sa12.xxxx        
+ 131:   mov.f32         i1.xyzw, sa20.xyzw                   
+ 132:   mad.f32         i0.xyzw, sa12.yyyy, i1.xyzw, i0.xyzw 
+ 133:   mad.f32         i0.xyzw, sa14.xxxx, i2.xyzw, i0.xyzw 
+ 134:   mov.f32         i1.xyzw, sa28.xyzw                   
+ 135:   mad.f32         i0.xyzw, sa14.yyyy, i1.xyzw, i0.xyzw 
+ 136:   dot.f32         o2.-y, r0.xyzw, i0.xyzw              
+ 137:   lda32.fetch3    pa0, [sa116, 0x8]                    
+ 138:   mov.f32         i0.xyz, pa0.xyz                      
+ 139:   dot.f32         i0.x, pa4.xyz, i0.xyz                
+ 140:   rcp.f32         pa2.-y, i0.x                         
+ 141:   lda32.fetch3    pa0, [sa116, 0x4]                    
+ 142:   mov.f32         i0.xyz, pa0.xyz                      
+ 143:   dot.f32         i0.x, pa4.xyz, i0.xyz                
+ 144:   max.f32         i0.x, i0.x, {0}                      
+ 145:   mad.f32         i0.x, pa2.y, i0.x, {0}               
+ 146:   mul.f32         i1.xyz, sa112.xyz, r26.xxx           
+ 147:   mad.f32         pa6.xy, i1.xy, i0.xx, {0, 0}         
+ 148:   mul.f32         pa8.x, i1.z, i0.x                    
+ 149:   lda32.fetch3    pa0, [sa116, 0x1c]                   
+ 150:   mov.f32         i0.xyz, pa0.xyz                      
+ 151:   dot.f32         i0.x, o4.xyz, i0.xyz                 
+ 152:   rcp.f32         pa4.x, i0.x                          
+ 153:   lda32.fetch3    pa0, [sa116, 0x18]                   
+ 154:   mov.f32         i0.xyz, pa0.xyz                      
+ 155:   dot.f32         pa0.x, o4.xyz, i0.xyz                
+ 156:   lda32.fetch3    pa1, [sa116, 0x10]                   
+ 157:   max.f32         i0.x, pa0.x, {0}                     
+ 158:   mad.f32         i1.x, pa4.x, i0.x, {0}               
+ 159:   mul.f32         i0.xyz, pa0.yzw, r26.yyy             
+ 160:   mul.f32         i0.xyz, i0.xyz, i1.xxx               
+ 160:   +mov.f32        i2.xyz, sa64.xyz                     
+ 161:   max.f32         i1.xy, r4.xy, {0, 0}                 
+ 162:   mad.f32         i0.xyz, i0.xyz, i1.xxx, i2.xyz       
+ 163:   mad.f32         i0.xyz, pa6.xyz, i1.yyy, i0.xyz      
+ 164:   mov.f32         i1.xyz, o10.xyz                      
+ 165:   dot.f32         i2.x, sa100.xyz, i1.xyz              
+ 166:   max.f32         i2.x, i2.x, {0}                      
+ 167:   dot.f32         i1.x, sa104.xyz, i1.xyz              
+ 168:   rcp.f32         i1.x, i1.x                           
+ 169:   mad.f32         i1.x, i1.x, i2.x, {0}                
+ 170:   mul.f32         i2.xyz, sa92.xyz, r24.yyy            
+ 171:   mul.f32         i1.xyz, i2.xyz, i1.xxx               
+ 171:   +mov.f32        i2.xyz, pa14.xyz                     
+ 172:   dot.f32         pa12.-y, sa80.xyz, i2.xyz            
+ 173:   dot.f32         i2.x, sa84.xyz, i2.xyz               
+ 174:   rcp.f32         pa4.-y, i2.x                         
+ 175:   mul.f32         pa6.xy, sa72.xy, r24.xx              
+ 176:   mul.f32         pa8.x, sa74.x, r24.x                 
+ 177:   max.f32         pa4.x, pa10.x, {0}                   
+ 178:   or.u32          pa10.x, sa70.x, 0x0                  
+ 179:   mov.f32         pa10.-y, sa66.-y                     
+ 180:   mov.f32         o10.xy, pa20.xy                      
+ 181:   mov.f32         i2.xyz, r6.xyz                       
+ 182:   dot.f32         pa2.x, sa48.xyz, i2.xyz              
+ 183:   dot.f32         pa2.-y, sa52.xyz, i2.xyz             
+ 184:   mov.f32         pa0.xy, (sa50.y, sa54.y)             
+ 185:   add.f32         o12.xy, pa2.xy, pa0.xy               
+ 186:   max.f32         i2.xy, pa12.xy, {0, 0}               
+ 187:   mad.f32         pa0.x, pa4.y, i2.y, {0}              
+ 188:   mad.f32         i0.xyz, i1.xyz, i2.xxx, i0.xyz       
+ 188:   +mov.f32        i2.xyzw, sa70.yyyy                   
+ 189:   mul.f32         i1.xyz, pa6.xyz, pa0.xxx             
+ 190:   mad.f32         i2.xyz, pa4.xxx, i1.xyz, i0.xyz      
+ 191:   mad.f32         o4.xy, sa68.xy, i2.xy, {0, 0}        
+ 192:   mul.f32         o6.xy, pa10.xy, i2.zw                
