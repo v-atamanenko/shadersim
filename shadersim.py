@@ -26,15 +26,29 @@ shaders_info = []        # output info of shaders similarity to input disasm
 # Clear out the output of Razor / psp2shaderperf so that it doesn't include
 # line numbers and any intro text
 def sanitize_disasm(text):
-    if "Primary program:" in text:
-        idx = text.index("Primary program:")
-        leng = len("Primary program:")
+    if "Secondary program:" in text:
+        idx = text.index("Secondary program:")
+        leng = len("Secondary program:")
         text = text[idx+leng:]
+        text = text.replace('Primary program:', '')
+        text = text.replace('Primary Program', '')
+    else:
+        if "Secondary Program" in text:
+            idx = text.index("Secondary Program")
+            leng = len("Secondary Program")
+            text = text[idx+leng:]
+            text = text.replace('Primary program:', '')
+            text = text.replace('Primary Program', '')
+        else:
+            if "Primary program:" in text:
+                idx = text.index("Primary program:")
+                leng = len("Primary program:")
+                text = text[idx+leng:]
 
-    if "Primary Program" in text:
-        idx = text.index("Primary Program")
-        leng = len("Primary Program")
-        text = text[idx+leng:]
+            if "Primary Program" in text:
+                idx = text.index("Primary Program")
+                leng = len("Primary Program")
+                text = text[idx+leng:]
 
     text = re.sub(r"\d+ *:", "", text)
     text = re.sub('\t', ' ', text)
