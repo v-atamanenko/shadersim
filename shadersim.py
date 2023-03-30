@@ -95,11 +95,11 @@ def do_disasm(gxp):
     proc = Popen(["psp2shaderperf.exe", "-disasm", gxp], shell=True, stdout=PIPE, stderr=PIPE)
     (output, error) = proc.communicate()
 
-    out = str(output)
+    out = sanitize_disasm(str(output))
     with open(disasm_path, "w") as f:
         f.write(out)
 
-    return {'data': sanitize_disasm(out), 'path': gxp}
+    return {'data': out, 'path': gxp}
 
 
 # Initialize worker thread that will compute similarity
